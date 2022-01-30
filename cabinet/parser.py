@@ -1,11 +1,10 @@
 import os
 import glob
-from typing import List
 
 from cabinet.consts import UTENSILS_DIR_FULL_PATH
 
 
-def dir_parser(filename: str) -> List[str]:
+def dir_parser(filename: str) -> str:
     """
     Parses the utensils directory, defined as UTENSILS_DIR_FULL_PATH, and
     returns the
