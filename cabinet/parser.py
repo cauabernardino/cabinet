@@ -11,7 +11,7 @@ def dir_parser(filename: str) -> str:
     """
     contents = glob.glob(f"{UTENSILS_DIR_FULL_PATH}/*")
 
-    file_to_run: str
+    file_to_run: str = ""
 
     for content in contents:
         if os.path.isfile(content) and filename in content:
