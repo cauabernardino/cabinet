@@ -1,3 +1,5 @@
 # Cabinet
 
-WIP
+A simple wrapper to run scripts easily from CLI.
+
+WIP.
