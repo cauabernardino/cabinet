@@ -1,7 +1,7 @@
 import pathlib
 import shutil
 
-from typing import Dict, Union
+from typing import Dict, List, Union
 from cabinet.consts import SUPPORTED_FILETYPES
 
 
@@ -14,7 +14,7 @@ def dir_parser(path_to_dir: str) -> Dict[str, Dict[str, str]]:
     files_data = {}
 
     for file in files:
-        files_data[f"{file.stem}"] = {
+        files_data[file.stem] = {
             "suffix": file.suffix,
             "path": file.as_posix(),
         }
@@ -22,7 +22,7 @@ def dir_parser(path_to_dir: str) -> Dict[str, Dict[str, str]]:
     return files_data
 
 
-def bin_resolver(file_data: Dict[str, str]) -> Union[str, None]:
+def bin_resolver(file_data: Dict[str, str]) -> Union[List[str], None]:
     """
     Resolves the right binary to run the script.
     """
