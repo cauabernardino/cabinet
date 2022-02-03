@@ -1,20 +1,26 @@
 import sys
 import subprocess
 
-from cabinet.parser import dir_parser
+from cabinet.tools import dir_parser, bin_resolver
+from cabinet.consts import UTENSILS_DIR_FULL_PATH
 
 
 def main():
     all_args = sys.argv
-    script_to_run = all_args[1]
+    command_to_run = all_args[1]
     args = all_args[2:]
 
-    utensil = dir_parser(script_to_run)
+    utensils = dir_parser(UTENSILS_DIR_FULL_PATH)
 
-    try:
-        subprocess.run(["python3", utensil, *args])
-    except Exception:
-        print("something went wrong")
+    if command_to_run in utensils.keys():
+        binary = bin_resolver(utensils[command_to_run])
+
+        if binary:
+            subprocess.run([*binary, utensils[command_to_run]["path"], *args])
+        else:
+            print("filetype not supported")
+    else:
+        print("No utensils found")
 
 
 if __name__ == "__main__":
